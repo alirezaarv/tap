@@ -9,6 +9,7 @@
     "express": "^4.15.4",
     "http": "^0.0.0",
     "mongoose": "^4.11.11",
-    "pact": "ssh://git@gitlab.pheebs.co:2222/meta/pact.git"
+    "pact": "ssh://git@gitlab.pheebs.co:2222/meta/pact.git",
+    "redis": "^2.8.0"
   }
 }
