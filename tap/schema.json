@@ -6,24 +6,474 @@
       "desc": "Basic API",
       "methods": [
         {
-          "name": "greet",
-          "desc": "greet to user",
+          "name": "sendSms",
+          "desc": "send verification code to user",
           "type": "create",
           "request": [
             {
-              "name": "username",
+              "name": "phone",
               "type": "string",
-              "desc": "username to greet"
+              "desc": "user phone, 11 digits, starts with 09"
+            }
+          ],
+          "response": [],
+          "errors": [
+            {
+              "code": "PHONE",
+              "desc": "phone number is not a valid phone number"
+            },
+            {
+              "code": "LIMITED",
+              "desc": "user is limited"
+            }
+          ]
+        },
+        {
+          "name": "signIn",
+          "desc": "validate sms code",
+          "type": "create",
+          "request": [
+            {
+              "name": "phone",
+              "type": "string",
+              "desc": "user phone, 11 digits, starts with 09"
+            },
+            {
+              "name": "code",
+              "type": "string",
+              "desc": "4 digit verifiacation code"
             }
           ],
           "response": [
             {
-              "name": "msg",
+              "name": "token",
               "type": "string",
-              "desc": "greeting msg"
+              "desc": "token to use for other methods"
             }
           ],
-          "errors": [{ "code": "BAD_USER", "desc": "trump is a bad user" }]
+          "errors": [
+            {
+              "code": "PHONE",
+              "desc": "phone number is not a valid phone number"
+            },
+            {
+              "code": "EXPIRED",
+              "desc": "code is expired"
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "desc": "code is wrong"
+            },
+            {
+              "code": "UNOCCUPIED",
+              "desc": "code is true but user is new"
+            }
+          ]
+        },
+        {
+          "name": "signUp",
+          "desc": "validate sms code",
+          "type": "create",
+          "request": [
+            {
+              "name": "phone",
+              "type": "string",
+              "desc": "user phone, 11 digits, starts with 09"
+            },
+            {
+              "name": "code",
+              "type": "string",
+              "desc": "4 digit verifiacation code"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "desc": "user fullname"
+            }
+          ],
+          "response": [
+            {
+              "name": "token",
+              "type": "string",
+              "desc": "authorized token to use"
+            }
+          ],
+          "errors": [
+            {
+              "code": "PHONE",
+              "desc": "phone number is not a valid phone number"
+            },
+            {
+              "code": "EXPIRED",
+              "desc": "code is expired"
+            },
+            {
+              "code": "UNAUTHORIZED",
+              "desc": "code is wrong"
+            },
+            {
+              "code": "NAME",
+              "desc": "name is not valid"
+            }
+          ]
+        },
+        {
+          "name": "getUser",
+          "desc": "get user desc",
+          "type": "create",
+          "request": [],
+          "response": [
+            {
+              "name": "fullname",
+              "type": "string",
+              "desc": "user fullname"
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "desc": "user phone number"
+            },
+            {
+              "name": "credit",
+              "type": "string",
+              "desc": "user credit in app"
+            },
+            {
+              "name": "cards",
+              "type": "array",
+              "desc": "user bank cards",
+              "shape": {
+                "name": "card",
+                "desc": "each element is a card number",
+                "type": "string"
+              }
+            }
+          ],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            }
+          ]
+        },
+        {
+          "name": "updateUser",
+          "desc": "update user info",
+          "type": "create",
+          "request": [
+            {
+              "name": "fullname",
+              "type": "string",
+              "desc": "user name more than 3 char and less than 20",
+              "optional": true,
+              "default": null
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "desc": "user phone starts with 09 and 11 digit",
+              "optional": true,
+              "default": null
+            },
+            {
+              "name": "card",
+              "type": "mixed",
+              "desc": "user card add",
+              "optional": true,
+              "default": null,
+              "shapes": [
+                {
+                  "name": "add",
+                  "type": "string",
+                  "desc": "card add field"
+                },
+                {
+                  "name": "delete",
+                  "type": "string",
+                  "desc": "card delete field"
+                }
+              ]
+            }
+          ],
+          "response": [
+            {
+              "name": "fullname",
+              "type": "string",
+              "desc": "user fullname"
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "desc": "user phone number"
+            },
+            {
+              "name": "credit",
+              "type": "string",
+              "desc": "user credit in app"
+            },
+            {
+              "name": "cards",
+              "type": "array",
+              "desc": "user bank cards",
+              "shape": {
+                "name": "card",
+                "desc": "each element is a card number",
+                "type": "string"
+              }
+            }
+          ],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            },
+            {
+              "code": "NAME",
+              "desc": "name is not valid"
+            }
+          ]
+        },
+        {
+          "name": "generateAddress",
+          "desc": "generate a temporary address",
+          "type": "create",
+          "request": [],
+          "response": [
+            {
+              "name": "address",
+              "desc": "user temp address",
+              "type": "string"
+            }
+          ],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            }
+          ]
+        },
+        {
+          "name": "createTransaction",
+          "desc": "create a new transaction",
+          "type": "create",
+          "request": [],
+          "response": [],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            }
+          ]
+        },
+        {
+          "name": "deleteTransaction",
+          "desc": "delete a transaction",
+          "type": "create",
+          "request": [],
+          "response": [],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            }
+          ]
+        },
+        {
+          "name": "getSections",
+          "desc": "delete a transaction",
+          "type": "create",
+          "request": [
+            {
+              "name": "beforeId",
+              "desc": "before id",
+              "type": "string",
+              "optional": true,
+              "default": null
+            }
+          ],
+          "response": [
+            {
+              "name": "sections",
+              "desc": "sections of this user (not all)",
+              "type": "array",
+              "shape": {
+                "name": "section",
+                "desc": "each element is a section",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "user",
+                    "desc": "other user in a section",
+                    "type": "string"
+                  },
+                  {
+                    "name": "value",
+                    "desc":
+                      "value of the section + is for you and - is for the other user",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            }
+          ]
+        },
+        {
+          "name": "getPersonalSections",
+          "desc": "get sections of a specific user",
+          "type": "create",
+          "request": [
+            {
+              "name": "userId",
+              "desc": "user id",
+              "type": "string"
+            },
+            {
+              "name": "beforeId",
+              "desc": "before id",
+              "type": "string",
+              "optional": true,
+              "default": null
+            }
+          ],
+          "response": [
+            {
+              "name": "beforeId",
+              "desc": "before id",
+              "type": "string"
+            },
+            {
+              "name": "sections",
+              "desc": "sections of this user (not all)",
+              "type": "array",
+              "shape": {
+                "name": "section",
+                "desc": "each element is a section",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "transactions",
+                    "desc": "transactions of this section",
+                    "type": "array",
+                    "shape": {
+                      "name": "trasnaction",
+                      "desc": "each element is a transaction",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "transaction",
+                          "desc": "transaction",
+                          "type": "object",
+                          "fields": [
+                            {
+                              "name": "user",
+                              "desc": "other user of the transaction",
+                              "type": "string"
+                            },
+                            {
+                              "name": "desc",
+                              "desc": "desc of the transaction",
+                              "type": "string"
+                            },
+                            {
+                              "name": "value",
+                              "desc":
+                                "value  of the transaction + for you and - for the other user",
+                              "type": "string"
+                            },
+                            {
+                              "name": "date",
+                              "desc": "date of the transaction",
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "date",
+                    "desc": "payment date of this section",
+                    "type": "number",
+                    "optional": true,
+                    "default": null
+                  },
+                  {
+                    "name": "value",
+                    "desc": "this section value",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            },
+            {
+              "code": "INVALID_ID",
+              "desc": "id is not valid"
+            }
+          ]
+        },
+        {
+          "name": "paySection",
+          "desc": "pay a section",
+          "type": "create",
+          "request": [
+            {
+              "name": "sectionId",
+              "desc": "section id",
+              "type": "string"
+            }
+          ],
+          "response": [],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            },
+            {
+              "code": "PAYMENT",
+              "desc": "payment failed"
+            }
+          ]
+        },
+        {
+          "name": "findUser",
+          "desc": "find user by address",
+          "type": "create",
+          "request": [
+            {
+              "name": "address",
+              "desc": "user address",
+              "type": "string"
+            }
+          ],
+          "response": [
+            {
+              "name": "id",
+              "desc": "user id",
+              "type": "string"
+            }
+          ],
+          "errors": [
+            {
+              "code": "AUTH",
+              "desc": "token is not authorized"
+            },
+            {
+              "code": "INVALID_ADDRESS",
+              "desc": "token is not authorized"
+            }
+          ]
         }
       ]
     }
