@@ -1,7 +1,17 @@
-const { requireAuth } = require('./utils')
+const { requireAuth, getUserById } = require('./utils')
 
 const func = (context, request, callback) => {
-  callback('NOT_IMPLIMENTED')
+  getUserById(context.id, (err, user) => {
+    if (err) {
+      return callback('UNKNOWN')
+    }
+    callback(null, {
+      fullname: user.fullname,
+      phone: user.phone,
+      credit: user.credit,
+      cards: user.cards
+    })
+  })
 }
 
 module.exports = requireAuth(func)

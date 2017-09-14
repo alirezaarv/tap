@@ -4,8 +4,8 @@ const { requireAuth, redisCli } = require('./utils')
 const func = (context, request, callback) => {
   const randomAddress = uuid.v4()
   redisCli.set(
-    `tap:address:${context.id}`,
-    randomAddress,
+    `tap:address:${randomAddress}`,
+    context.id,
     'EX',
     60 * 60 * 5,
     (err, res) => {
