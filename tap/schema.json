@@ -1,0 +1,31 @@
+{
+  "name": "tap",
+  "desc": "tap server",
+  "layers": [
+    {
+      "desc": "Basic API",
+      "methods": [
+        {
+          "name": "greet",
+          "desc": "greet to user",
+          "type": "create",
+          "request": [
+            {
+              "name": "username",
+              "type": "string",
+              "desc": "username to greet"
+            }
+          ],
+          "response": [
+            {
+              "name": "msg",
+              "type": "string",
+              "desc": "greeting msg"
+            }
+          ],
+          "errors": [{ "code": "BAD_USER", "desc": "trump is a bad user" }]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "tap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alirezaarv/tap.git",
+  "author": "alirezaarv <alireza.arv.mail@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "http": "^0.0.0",
+    "mongoose": "^4.11.11",
+    "pact": "ssh://git@gitlab.pheebs.co:2222/meta/pact.git"
+  }
+}
