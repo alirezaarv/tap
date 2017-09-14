@@ -6,12 +6,13 @@
   "author": "alirezaarv <alireza.arv.mail@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.5.0",
     "express": "^4.15.4",
-    "http": "^0.0.0",
     "jsonwebtoken": "^8.0.1",
     "mongoose": "^4.11.11",
     "pact": "ssh://git@gitlab.pheebs.co:2222/meta/pact.git",
     "redis": "^2.8.0",
+    "socket.io-client": "^2.0.3",
     "uuid": "^3.1.0"
   }
 }

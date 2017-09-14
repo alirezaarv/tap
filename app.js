@@ -16,7 +16,7 @@ const io = createPactSocketIO('api', [tap])
 app.use('/dev/client.js', (req, res) => {
   res.set('Content-Type', 'application/javascript')
   return res.end(
-    generateClient(process.env.URL || 'http://localhost', 'api', [
+    generateClient(process.env.URL || 'http://localhost:3000', 'api', [
       parseSchema(tap.schema)
     ])
   )

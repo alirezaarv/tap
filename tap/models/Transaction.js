@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const schema = new Schema({
   desc: { type: Schema.Types.String, required: true },
-  section: { type: Schema.Types.ObjectId, required: true },
+  section: { type: Schema.Types.ObjectId, default: null },
   from: { type: Schema.Types.ObjectId, required: true },
   to: { type: Schema.Types.ObjectId, required: true },
   value: { type: Schema.Types.String, required: true },

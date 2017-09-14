@@ -310,7 +310,7 @@
                     "name": "value",
                     "desc":
                       "value of the section + is for you and - is for the other user",
-                    "type": "string"
+                    "type": "number"
                   }
                 ]
               }
@@ -384,7 +384,7 @@
                               "name": "value",
                               "desc":
                                 "value  of the transaction + for you and - for the other user",
-                              "type": "string"
+                              "type": "number"
                             },
                             {
                               "name": "date",
@@ -406,7 +406,7 @@
                   {
                     "name": "value",
                     "desc": "this section value",
-                    "type": "string"
+                    "type": "number"
                   }
                 ]
               }
