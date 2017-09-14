@@ -8,8 +8,10 @@
   "dependencies": {
     "express": "^4.15.4",
     "http": "^0.0.0",
+    "jsonwebtoken": "^8.0.1",
     "mongoose": "^4.11.11",
     "pact": "ssh://git@gitlab.pheebs.co:2222/meta/pact.git",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "uuid": "^3.1.0"
   }
 }

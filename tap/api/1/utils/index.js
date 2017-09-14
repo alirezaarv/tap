@@ -1,3 +1,4 @@
 const requireAuth = require('./requireAuth')
+const { redisCli } = require('./redis')
 
-module.exports = { requireAuth }
+module.exports = { requireAuth, redisCli }
