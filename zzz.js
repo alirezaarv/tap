@@ -30,3 +30,9 @@ setTimeout(function() {
     value: 20
   })
 }, 300)
+
+setTimeout(function() {
+  exec(api.tap.getPersonalSections, {
+    userId: '59bae80f75f47155d2041945'
+  })
+}, 400)

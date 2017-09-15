@@ -1,7 +1,14 @@
-const { requireAuth } = require('./utils')
+const { requireAuth, getPersonalSections } = require('./utils')
 
 const func = (context, request, callback) => {
-  callback('NOT_IMPLIMENTED')
+  getPersonalSections(
+    context.id,
+    request.userId,
+    request.options || {},
+    (err, res) => {
+      callback(null, { beforeId: 'null', sections: res })
+    }
+  )
 }
 
 module.exports = requireAuth(func)

@@ -432,50 +432,25 @@
                     "desc": "transactions of this section",
                     "type": "array",
                     "shape": {
-                      "name": "trasnaction",
-                      "desc": "each element is a transaction",
+                      "name": "transaction",
+                      "desc": "transaction",
                       "type": "object",
                       "fields": [
                         {
-                          "name": "transaction",
-                          "desc": "transaction",
-                          "type": "object",
-                          "fields": [
-                            {
-                              "name": "user",
-                              "desc": "other user of the transaction",
-                              "type": "object",
-                              "fields": [
-                                {
-                                  "name": "id",
-                                  "desc": "user id",
-                                  "type": "string"
-                                },
-                                {
-                                  "name": "fullname",
-                                  "desc": "user fullname",
-                                  "type": "string"
-                                }
-                              ]
-                            },
-
-                            {
-                              "name": "desc",
-                              "desc": "desc of the transaction",
-                              "type": "string"
-                            },
-                            {
-                              "name": "value",
-                              "desc":
-                                "value  of the transaction + for you and - for the other user",
-                              "type": "number"
-                            },
-                            {
-                              "name": "date",
-                              "desc": "date of the transaction",
-                              "type": "number"
-                            }
-                          ]
+                          "name": "desc",
+                          "desc": "desc of the transaction",
+                          "type": "string"
+                        },
+                        {
+                          "name": "value",
+                          "desc":
+                            "value  of the transaction + for you and - for the other user",
+                          "type": "number"
+                        },
+                        {
+                          "name": "date",
+                          "desc": "date of the transaction",
+                          "type": "number"
                         }
                       ]
                     }
