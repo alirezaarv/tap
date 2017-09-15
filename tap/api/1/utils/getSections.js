@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
+const async = require('async')
 const Transaction = mongoose.model('Transaction')
+const User = mongoose.model('User')
+const getUserById = require('./getUserById')
 
 function getTransactions(id, options, cb) {
   const beforeId = options.beforeId
@@ -47,8 +50,38 @@ function getSections(id, options, cb) {
       sections.push({ user: key, value: groups[key] })
     }
     //console.log('inja sections', sections)
-    cb(null, { sections })
+    addUserNamesToSections(sections, (err, res) => {
+      if (err) {
+        return cb(err)
+      }
+      cb(null, { sections: res })
+    })
   })
+}
+
+function addUserNamesToSections(sections, cb) {
+  async.times(
+    sections.length,
+    (n, next) => {
+      User.find({ _id: sections[n].user }).then(
+        r => {
+          next(null, {
+            value: sections[n].value,
+            user: { id: `${r[0]._id}`, fullname: r[0].fullname }
+          })
+        },
+        r => {
+          return next('UNKNOWN')
+        }
+      )
+    },
+    (err, res) => {
+      if (err) {
+        return cb('UNKNOWN')
+      }
+      cb(null, res)
+    }
+  )
 }
 
 module.exports = getSections

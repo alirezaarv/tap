@@ -304,7 +304,19 @@
                   {
                     "name": "user",
                     "desc": "other user in a section",
-                    "type": "string"
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "id",
+                        "desc": "user id",
+                        "type": "string"
+                      },
+                      {
+                        "name": "fullname",
+                        "desc": "user fullname",
+                        "type": "string"
+                      }
+                    ]
                   },
                   {
                     "name": "value",
@@ -373,8 +385,21 @@
                             {
                               "name": "user",
                               "desc": "other user of the transaction",
-                              "type": "string"
+                              "type": "object",
+                              "fields": [
+                                {
+                                  "name": "id",
+                                  "desc": "user id",
+                                  "type": "string"
+                                },
+                                {
+                                  "name": "fullname",
+                                  "desc": "user fullname",
+                                  "type": "string"
+                                }
+                              ]
                             },
+
                             {
                               "name": "desc",
                               "desc": "desc of the transaction",
