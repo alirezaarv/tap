@@ -256,8 +256,67 @@
           "name": "createTransaction",
           "desc": "create a new transaction",
           "type": "create",
-          "request": [],
-          "response": [],
+          "request": [
+            {
+              "name": "desc",
+              "desc": "trasnaction desc",
+              "type": "string"
+            },
+            {
+              "name": "to",
+              "desc": "trasnaction destination id",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "desc": "trasnaction value",
+              "type": "number"
+            }
+          ],
+          "response": [
+            {
+              "name": "id",
+              "desc": "trasnaction id",
+              "type": "string"
+            },
+            {
+              "name": "desc",
+              "desc": "trasnaction desc",
+              "type": "string"
+            },
+            {
+              "name": "section",
+              "desc": "trasnaction section",
+              "type": "string",
+              "optional": true,
+              "default": null
+            },
+            {
+              "name": "to",
+              "desc": "trasnaction destination id",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "desc": "trasnaction value",
+              "type": "number"
+            },
+            {
+              "name": "date",
+              "desc": "trasnaction date",
+              "type": "number"
+            },
+            {
+              "name": "accepted",
+              "desc": "trasnaction is accepted",
+              "type": "boolean"
+            },
+            {
+              "name": "payed",
+              "desc": "trasnaction is payed",
+              "type": "boolean"
+            }
+          ],
           "errors": [
             {
               "code": "AUTH",

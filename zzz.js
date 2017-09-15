@@ -22,3 +22,11 @@ setTimeout(function() {
 setTimeout(function() {
   exec(api.tap.getSections, {})
 }, 200)
+
+setTimeout(function() {
+  exec(api.tap.createTransaction, {
+    desc: 'bayad be moz 20 bdam',
+    to: '59bae80f75f47155d2041945',
+    value: 20
+  })
+}, 300)
