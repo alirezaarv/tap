@@ -4,6 +4,7 @@ const getUserById = require('./getUserById')
 const getSections = require('./getSections')
 const getPersonalSections = require('./getPersonalSections')
 const createTransaction = require('./createTransaction')
+const getDeptAndDemand = require('./getDeptAndDemand')
 
 module.exports = {
   getPersonalSections,
@@ -11,5 +12,6 @@ module.exports = {
   redisCli,
   getUserById,
   getSections,
-  createTransaction
+  createTransaction,
+  getDeptAndDemand
 }
